@@ -3,3 +3,8 @@
 ################################################################################
 
 /AlitasKentaki.API/bin/Debug/netcoreapp3.1
+/AlitasKentaki.API/obj
+/AlitasKentaki.APIBusiness.DBContext/bin/Debug/netcoreapp3.1
+/AlitasKentaki.APIBusiness.DBContext/obj
+/AlitasKentaki.APIBusiness.DBEntity/bin/Debug/netcoreapp3.1
+/AlitasKentaki.APIBusiness.DBEntity/obj
