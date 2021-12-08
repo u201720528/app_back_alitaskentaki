@@ -111,6 +111,7 @@ namespace AlitasKentaki.API
             services.AddTransient<ICategoriaRepository, CategoriaRepository>();
             services.AddTransient<IProductoRepository, ProductoRepository>();
             services.AddTransient<ICarritoRepository, CarritoRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
             //services.AddTransient<IProjectRepository, ProjectRepository>();
             //services.AddTransient<IApartmentRepository, ApartmentRepository>();
             // ----------------------------------------------------------------
