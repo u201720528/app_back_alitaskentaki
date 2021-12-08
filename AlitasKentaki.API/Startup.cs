@@ -109,6 +109,7 @@ namespace AlitasKentaki.API
             //TODO: Registrar las interfaces para Inyección de Dependencias
 
             services.AddTransient<ICategoriaRepository, CategoriaRepository>();
+            services.AddTransient<IProductoRepository, ProductoRepository>();
             //services.AddTransient<IProjectRepository, ProjectRepository>();
             //services.AddTransient<IApartmentRepository, ApartmentRepository>();
             // ----------------------------------------------------------------
