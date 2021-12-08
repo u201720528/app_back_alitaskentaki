@@ -9,6 +9,38 @@ namespace DBContext
 {
     public class CarritoRepository : BaseRepository, ICarritoRepository
     {
+        public BaseResponse AgregarProductoCarrito(EntityProductoCarrito entityProductoCarrito)
+        {
+            var returnEntity = new BaseResponse();
+            try
+            {
+                using (var db = GetSqlConnection())
+                {
+                    const string sql = @"usp_CarritoComprasPorUsuario";
+                    var p = new DynamicParameters();
+                    p.Add(name: "@IDUSUARIO", value: entityProductoCarrito.IdUsuario, dbType: DbType.Int32, direction: ParameterDirection.Input);
+                    p.Add(name: "@IDPRODUCTO", value: entityProductoCarrito.IdProducto, dbType: DbType.Int32, direction: ParameterDirection.Input);
+                    p.Add(name: "@CANTIDAD", value: entityProductoCarrito.Cantidad, dbType: DbType.Int32, direction: ParameterDirection.Input);
+                    db.Query<EntityProductoCarrito>(
+                         sql: sql,
+                         param: p,
+                         commandType: CommandType.StoredProcedure
+                         );
+
+                    returnEntity.issuccess = true;
+                    returnEntity.errorcode = "0000";
+                    returnEntity.errormessage = string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                returnEntity.issuccess = false;
+                returnEntity.errorcode = "0001";
+                returnEntity.errormessage = ex.Message;
+                returnEntity.data = null;
+            }
+            return returnEntity;
+        }
         public BaseResponse ObtenerCarritoPorUsuario(int idUsuario)
         {
             var returnEntity = new BaseResponse();

@@ -1,4 +1,5 @@
 ﻿using DBContext;
+using DBEntity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -40,6 +41,19 @@ namespace AlitasKentaki.API.Controllers
         public ActionResult ObtenerMontoCarritoPorUsuario(int idUsuario)
         {
             var ret = _carritoRepository.ObtenerMontoCarritoPorUsuario(idUsuario);
+
+            if (ret == null)
+                return StatusCode(401);
+
+            return Json(ret);
+        }
+        [Produces("application/json")]
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("agregarproducto")]
+        public ActionResult AgregarProductoCarrito(EntityProductoCarrito entityProductoCarrito)
+        {
+            var ret = _carritoRepository.AgregarProductoCarrito(entityProductoCarrito);
 
             if (ret == null)
                 return StatusCode(401);
