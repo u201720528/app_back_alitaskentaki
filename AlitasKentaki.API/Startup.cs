@@ -115,8 +115,8 @@ namespace AlitasKentaki.API
             //services.AddTransient<IProjectRepository, ProjectRepository>();
             //services.AddTransient<IApartmentRepository, ApartmentRepository>();
             // ----------------------------------------------------------------
-            //services.AddTransient<HttpClientAuthorizationDelegatingHandler>();
-            //services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddTransient<HttpClientAuthorizationDelegatingHandler>();
+            services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);

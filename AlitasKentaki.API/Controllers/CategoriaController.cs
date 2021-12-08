@@ -10,6 +10,7 @@ namespace AlitasKentaki.API.Controllers
 {
     [Produces("application/json")]
     [Route("api/categoria")]
+    [ApiController]
     public class CategoriaController : Controller
     {
         protected readonly ICategoriaRepository _categoriaRepository;
