@@ -8,5 +8,6 @@ namespace DBContext
     public interface ICarritoRepository
     {
         public BaseResponse ObtenerCarritoPorUsuario(int idUsuario);
+        public BaseResponse ObtenerMontoCarritoPorUsuario(int idUsuario);
     }
 }

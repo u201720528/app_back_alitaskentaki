@@ -48,5 +48,45 @@ namespace DBContext
             }
             return returnEntity;
         }
+
+        public BaseResponse ObtenerMontoCarritoPorUsuario(int idUsuario)
+        {
+            var returnEntity = new BaseResponse();
+            var entitiesCarrito = new List<EntityCarritoPago>();
+            try
+            {
+                using (var db = GetSqlConnection())
+                {
+                    const string sql = @"usp_MontoCarritoComprasPorUsuario";
+                    var p = new DynamicParameters();
+                    p.Add(name: "@IDUSUARIO", value: idUsuario, dbType: DbType.Int32, direction: ParameterDirection.Input);
+                    entitiesCarrito = db.Query<EntityCarritoPago>(sql,
+                       commandType: CommandType.StoredProcedure, param: p).ToList();
+                    if (entitiesCarrito.Count > 0)
+                    {
+                        returnEntity.issuccess = true;
+                        returnEntity.errorcode = "0000";
+                        returnEntity.errormessage = string.Empty;
+                        returnEntity.data = entitiesCarrito[0];
+                    }
+                    else
+                    {
+                        returnEntity.issuccess = false;
+                        returnEntity.errorcode = "0000";
+                        returnEntity.errormessage = string.Empty;
+                        returnEntity.data = null;
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                returnEntity.issuccess = false;
+                returnEntity.errorcode = "0001";
+                returnEntity.errormessage = ex.Message;
+                returnEntity.data = null;
+            }
+            return returnEntity;
+        }
     }
 }

@@ -32,5 +32,19 @@ namespace AlitasKentaki.API.Controllers
 
             return Json(ret);
         }
+
+        [Produces("application/json")]
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("obtenermontocarritoporusuario")]
+        public ActionResult ObtenerMontoCarritoPorUsuario(int idUsuario)
+        {
+            var ret = _carritoRepository.ObtenerMontoCarritoPorUsuario(idUsuario);
+
+            if (ret == null)
+                return StatusCode(401);
+
+            return Json(ret);
+        }
     }
 }
