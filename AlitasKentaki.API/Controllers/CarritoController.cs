@@ -5,12 +5,14 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace AlitasKentaki.API.Controllers
 {
     [Produces("application/json")]
     [Route("api/carrito")]
+    [ApiController]
     public class CarritoController : Controller
     {
         protected readonly ICarritoRepository _carritoRepository;
@@ -21,12 +23,18 @@ namespace AlitasKentaki.API.Controllers
         }
 
         [Produces("application/json")]
-        [AllowAnonymous]
+        [Authorize]
         [HttpGet]
         [Route("obtenercarritoporusuario")]
-        public ActionResult ObtenerProductosPorCategoria(int idUsuario)
+        public ActionResult ObtenerCarritoPorUsuario()
         {
-            var ret = _carritoRepository.ObtenerCarritoPorUsuario(idUsuario);
+            var identity = User.Identity as ClaimsIdentity;
+            IEnumerable<Claim> claims = identity.Claims;
+
+            var usercod = claims.Where(p => p.Type == "client_codigo_usuario").FirstOrDefault()?.Value;
+            var userdoc = claims.Where(p => p.Type == "client_numero_documento").FirstOrDefault()?.Value;
+
+            var ret = _carritoRepository.ObtenerCarritoPorUsuario(int.Parse(usercod));
 
             if (ret == null)
                 return StatusCode(401);
@@ -35,12 +43,18 @@ namespace AlitasKentaki.API.Controllers
         }
 
         [Produces("application/json")]
-        [AllowAnonymous]
+        [Authorize]
         [HttpGet]
         [Route("obtenermontocarritoporusuario")]
-        public ActionResult ObtenerMontoCarritoPorUsuario(int idUsuario)
+        public ActionResult ObtenerMontoCarritoPorUsuario()
         {
-            var ret = _carritoRepository.ObtenerMontoCarritoPorUsuario(idUsuario);
+            var identity = User.Identity as ClaimsIdentity;
+            IEnumerable<Claim> claims = identity.Claims;
+
+            var usercod = claims.Where(p => p.Type == "client_codigo_usuario").FirstOrDefault()?.Value;
+            var userdoc = claims.Where(p => p.Type == "client_numero_documento").FirstOrDefault()?.Value;
+
+            var ret = _carritoRepository.ObtenerMontoCarritoPorUsuario(int.Parse(usercod));
 
             if (ret == null)
                 return StatusCode(401);
@@ -48,7 +62,7 @@ namespace AlitasKentaki.API.Controllers
             return Json(ret);
         }
         [Produces("application/json")]
-        [AllowAnonymous]
+        [Authorize]
         [HttpGet]
         [Route("agregarproducto")]
         public ActionResult AgregarProductoCarrito(EntityProductoCarrito entityProductoCarrito)

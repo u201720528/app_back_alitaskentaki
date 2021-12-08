@@ -1,4 +1,5 @@
-﻿using DBContext;
+﻿using AlitasKentaki.API.Security;
+using DBContext;
 using DBEntity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -10,7 +11,6 @@ using System.Net;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using UPC.E31A.APIBusiness.API.Security;
 
 namespace AlitasKentaki.API.Controllers
 {
