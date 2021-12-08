@@ -63,10 +63,18 @@ namespace AlitasKentaki.API.Controllers
         }
         [Produces("application/json")]
         [Authorize]
-        [HttpGet]
+        [HttpPost]
         [Route("agregarproducto")]
         public ActionResult AgregarProductoCarrito(EntityProductoCarrito entityProductoCarrito)
         {
+            var identity = User.Identity as ClaimsIdentity;
+            IEnumerable<Claim> claims = identity.Claims;
+
+            var usercod = claims.Where(p => p.Type == "client_codigo_usuario").FirstOrDefault()?.Value;
+            var userdoc = claims.Where(p => p.Type == "client_numero_documento").FirstOrDefault()?.Value;
+
+            entityProductoCarrito.IdUsuario = int.Parse(usercod);
+
             var ret = _carritoRepository.AgregarProductoCarrito(entityProductoCarrito);
 
             if (ret == null)
