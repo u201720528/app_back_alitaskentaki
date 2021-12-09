@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <PackageReference Include="FirebaseAdmin" Version="1.15.0" />
-    <PackageReference Include="IdentityServer4" Version="3.0.2" />
     <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="3.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.0.3" />
     <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="3.1.1" />
@@ -22,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\AlitasKentaki.APIBusiness.DBContext\AlitasKentaki.APIBusiness.DBContext.csproj" />
     <ProjectReference Include="..\AlitasKentaki.APIBusiness.DBEntity\AlitasKentaki.APIBusiness.DBEntity.csproj" />
+    <ProjectReference Include="..\UPC.APIBusiness.API.IS\UPC.APIBusiness.API.IS.csproj" />
   </ItemGroup>
 
 

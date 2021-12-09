@@ -8,24 +8,35 @@ using System.Linq;
 
 namespace DBContext
 {
-    public class CategoriaRepository : BaseRepository, ICategoriaRepository
+    public class UserRepository : BaseRepository, IUserRepository
     {
-        public BaseResponse ObtenerCategorias()
+        public BaseResponse Login(EntityLogin login)
         {
             var returnEntity = new BaseResponse();
-            var entitiesProject = new List<EntityCategoria>();
+            var entityLoginResponse = new EntityLoginResponse();
+
             try
             {
                 using (var db = GetSqlConnection())
                 {
-                    const string sql = @"usp_ListarCategorias";
-                    entitiesProject = db.Query<EntityCategoria>(sql, commandType: CommandType.StoredProcedure).ToList();
-                    if (entitiesProject.Count > 0)
+                    const string sql = @"usp_user_login";
+
+                    var p = new DynamicParameters();
+                    p.Add(name: "@LOGINUSUARIO", value: login.usuario.ToUpper(), dbType: DbType.String, direction: ParameterDirection.Input);
+                    p.Add(name: "@PASSWORDUSUARIO", value: login.password, dbType: DbType.String, direction: ParameterDirection.Input);
+
+                    entityLoginResponse = db.Query<EntityLoginResponse>(
+                        sql: sql,
+                        param: p,
+                        commandType: CommandType.StoredProcedure
+                        ).FirstOrDefault();
+
+                    if (entityLoginResponse != null)
                     {
                         returnEntity.issuccess = true;
                         returnEntity.errorcode = "0000";
                         returnEntity.errormessage = string.Empty;
-                        returnEntity.data = entitiesProject;
+                        returnEntity.data = entityLoginResponse;
                     }
                     else
                     {
@@ -34,7 +45,6 @@ namespace DBContext
                         returnEntity.errormessage = string.Empty;
                         returnEntity.data = null;
                     }
-
                 }
             }
             catch (Exception ex)
@@ -44,6 +54,7 @@ namespace DBContext
                 returnEntity.errormessage = ex.Message;
                 returnEntity.data = null;
             }
+
             return returnEntity;
         }
     }

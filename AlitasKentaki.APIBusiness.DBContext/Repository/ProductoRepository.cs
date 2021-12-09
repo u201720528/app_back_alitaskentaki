@@ -8,24 +8,27 @@ using System.Linq;
 
 namespace DBContext
 {
-    public class CategoriaRepository : BaseRepository, ICategoriaRepository
+    public class ProductoRepository : BaseRepository, IProductoRepository
     {
-        public BaseResponse ObtenerCategorias()
+        public BaseResponse ObtenerProductosPorCategoria(int idCategoria)
         {
             var returnEntity = new BaseResponse();
-            var entitiesProject = new List<EntityCategoria>();
+            var entitiesProducto = new List<EntityProducto>();
             try
             {
                 using (var db = GetSqlConnection())
                 {
-                    const string sql = @"usp_ListarCategorias";
-                    entitiesProject = db.Query<EntityCategoria>(sql, commandType: CommandType.StoredProcedure).ToList();
-                    if (entitiesProject.Count > 0)
+                    const string sql = @"usp_ListarProductosPorCategoria";
+                    var p = new DynamicParameters();
+                    p.Add(name: "@IDCATEGORIA", value: idCategoria, dbType: DbType.Int32, direction: ParameterDirection.Input);
+                    entitiesProducto = db.Query<EntityProducto>(sql,
+                       commandType: CommandType.StoredProcedure, param: p).ToList();
+                    if (entitiesProducto.Count > 0)
                     {
                         returnEntity.issuccess = true;
                         returnEntity.errorcode = "0000";
                         returnEntity.errormessage = string.Empty;
-                        returnEntity.data = entitiesProject;
+                        returnEntity.data = entitiesProducto;
                     }
                     else
                     {

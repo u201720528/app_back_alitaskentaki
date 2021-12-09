@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31105.61
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlitasKentaki.API", "AlitasKentaki.API\AlitasKentaki.API.csproj", "{CFFECC0F-2FC1-4601-93D0-E2B00E7395B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlitasKentaki.API", "AlitasKentaki.API\AlitasKentaki.API.csproj", "{CFFECC0F-2FC1-4601-93D0-E2B00E7395B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlitasKentaki.APIBusiness.DBContext", "AlitasKentaki.APIBusiness.DBContext\AlitasKentaki.APIBusiness.DBContext.csproj", "{3F3DDECB-CDDD-4880-B889-1B4B954E180D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlitasKentaki.APIBusiness.DBContext", "AlitasKentaki.APIBusiness.DBContext\AlitasKentaki.APIBusiness.DBContext.csproj", "{3F3DDECB-CDDD-4880-B889-1B4B954E180D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlitasKentaki.APIBusiness.DBEntity", "AlitasKentaki.APIBusiness.DBEntity\AlitasKentaki.APIBusiness.DBEntity.csproj", "{14F13314-7153-4E6C-B150-551B7401FFD6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlitasKentaki.APIBusiness.DBEntity", "AlitasKentaki.APIBusiness.DBEntity\AlitasKentaki.APIBusiness.DBEntity.csproj", "{14F13314-7153-4E6C-B150-551B7401FFD6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UPC.APIBusiness.API.IS", "UPC.APIBusiness.API.IS\UPC.APIBusiness.API.IS.csproj", "{03C31E66-510A-48B7-9CB4-B989E7046282}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{14F13314-7153-4E6C-B150-551B7401FFD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14F13314-7153-4E6C-B150-551B7401FFD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14F13314-7153-4E6C-B150-551B7401FFD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03C31E66-510A-48B7-9CB4-B989E7046282}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03C31E66-510A-48B7-9CB4-B989E7046282}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03C31E66-510A-48B7-9CB4-B989E7046282}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03C31E66-510A-48B7-9CB4-B989E7046282}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

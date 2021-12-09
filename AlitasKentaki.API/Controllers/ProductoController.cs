@@ -9,24 +9,24 @@ using System.Threading.Tasks;
 namespace AlitasKentaki.API.Controllers
 {
     [Produces("application/json")]
-    [Route("api/categoria")]
+    [Route("api/producto")]
     [ApiController]
-    public class CategoriaController : Controller
+    public class ProductoController : Controller
     {
-        protected readonly ICategoriaRepository _categoriaRepository;
-        public CategoriaController(ICategoriaRepository categoriaRepository)
+        protected readonly IProductoRepository _categoriaRepository;
+        public ProductoController(IProductoRepository productoRepository)
         {
-            _categoriaRepository = categoriaRepository;
+            _categoriaRepository = productoRepository;
 
         }
 
         [Produces("application/json")]
         [AllowAnonymous]
         [HttpGet]
-        [Route("obtenercategorias")]
-        public ActionResult ObtenerCategorias()
+        [Route("obtenerproductosporcategoria")]
+        public ActionResult ObtenerProductosPorCategoria(int idCategoria)
         {
-            var ret = _categoriaRepository.ObtenerCategorias();
+            var ret = _categoriaRepository.ObtenerProductosPorCategoria(idCategoria);
 
             if (ret == null)
                 return StatusCode(401);
