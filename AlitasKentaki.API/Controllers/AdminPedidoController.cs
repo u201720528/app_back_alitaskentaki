@@ -53,5 +53,33 @@ namespace AlitasKentaki.API.Controllers
             return Json(ret);
         }
 
+        [Produces("application/json")]
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("obtenerpedidoporidpedido")]
+        public ActionResult ObtenerAdminPedidoPorIdpedido(int idpedido)
+        {
+            var ret = _adminPedidoRepository.ObtenerAdminPedidoPorIdpedido(idpedido);
+
+            if (ret == null)
+                return StatusCode(401);
+
+            return Json(ret);
+        }
+
+        [Produces("application/json")]
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("modificarestado")]
+        public ActionResult ModificarEstado(int idpedido)
+        {
+            var ret = _adminPedidoRepository.ModificarEstado(idpedido);
+
+            if (ret == null)
+                return StatusCode(401);
+
+            return Json(ret);
+        }
+
     }
 }

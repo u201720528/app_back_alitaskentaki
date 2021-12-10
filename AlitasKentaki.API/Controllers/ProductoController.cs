@@ -50,6 +50,20 @@ namespace AlitasKentaki.API.Controllers
         }
 
 
+        [Produces("application/json")]
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("obtenerproductos")]
+        public ActionResult ObtenerProductos()
+        {
+            var ret = _productoRepository.ObtenerProductos();
+
+            if (ret == null)
+                return StatusCode(401);
+
+            return Json(ret);
+        }
+
 
         [HttpPost]
         [Route("insert")]

@@ -15,5 +15,8 @@ namespace DBContext
         public BaseResponse Actualizar(EntityProducto producto);
         public BaseResponse Desactivar(int codigo, int usuarioModifica);
 
+        //F
+        public BaseResponse ObtenerProductos();
+
     }
 }
