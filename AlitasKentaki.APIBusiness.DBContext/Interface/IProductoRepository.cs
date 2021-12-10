@@ -8,5 +8,6 @@ namespace DBContext
     public interface IProductoRepository
     {
         public BaseResponse ObtenerProductosPorCategoria(int idCategoria);
+        public BaseResponse ObtenerProductoPorId(int idProducto);
     }
 }
