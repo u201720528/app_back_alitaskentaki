@@ -124,5 +124,40 @@ namespace DBContext
             }
             return returnEntity;
         }
+
+        public BaseResponse AgregarPedidoCarrito(int idUsuario)
+        {
+            var returnEntity = new BaseResponse();
+            try
+            {
+                using (var db = GetSqlConnection())
+                {
+                    const string sql = @"usp_InsertarPedidoCarrito";
+                    var p = new DynamicParameters();
+                    p.Add(name: "@IDPEDIDO", dbType: DbType.Int32, direction: ParameterDirection.Output);
+                    p.Add(name: "@IDUSUARIO", value: idUsuario, dbType: DbType.Int32, direction: ParameterDirection.Input);
+                    db.Query<EntityProductoCarrito>(
+                         sql: sql,
+                         param: p,
+                         commandType: CommandType.StoredProcedure
+                         ).FirstOrDefault();
+
+                    int id = p.Get<int>("@IDPEDIDO");
+
+                    returnEntity.issuccess = true;
+                    returnEntity.errorcode = "0000";
+                    returnEntity.errormessage = string.Empty;
+                    returnEntity.data = id;
+                }
+            }
+            catch (Exception ex)
+            {
+                returnEntity.issuccess = false;
+                returnEntity.errorcode = "0001";
+                returnEntity.errormessage = ex.Message;
+                returnEntity.data = null;
+            }
+            return returnEntity;
+        }
     }
 }

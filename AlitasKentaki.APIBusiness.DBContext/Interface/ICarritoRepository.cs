@@ -9,7 +9,7 @@ namespace DBContext
     {
         public BaseResponse ObtenerCarritoPorUsuario(int idUsuario);
         public BaseResponse ObtenerMontoCarritoPorUsuario(int idUsuario);
-
+        public BaseResponse AgregarPedidoCarrito(int idUsuario);
         public BaseResponse AgregarProductoCarrito(EntityProductoCarrito entityProductoCarrito);
     }
 }
