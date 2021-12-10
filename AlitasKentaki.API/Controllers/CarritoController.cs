@@ -82,5 +82,24 @@ namespace AlitasKentaki.API.Controllers
 
             return Json(ret);
         }
+        [Produces("application/json")]
+        [Authorize]
+        [HttpGet]
+        [Route("agregarpedidocarrito")]
+        public ActionResult AgregarPedidoCarrito()
+        {
+            var identity = User.Identity as ClaimsIdentity;
+            IEnumerable<Claim> claims = identity.Claims;
+
+            var usercod = claims.Where(p => p.Type == "client_codigo_usuario").FirstOrDefault()?.Value;
+            var userdoc = claims.Where(p => p.Type == "client_numero_documento").FirstOrDefault()?.Value;
+
+            var ret = _carritoRepository.AgregarPedidoCarrito(int.Parse(usercod));
+
+            if (ret == null)
+                return StatusCode(401);
+
+            return Json(ret);
+        }
     }
 }
