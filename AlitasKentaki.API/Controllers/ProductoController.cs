@@ -1,4 +1,5 @@
 ﻿using DBContext;
+using DBEntity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,10 +14,10 @@ namespace AlitasKentaki.API.Controllers
     [ApiController]
     public class ProductoController : Controller
     {
-        protected readonly IProductoRepository _categoriaRepository;
+        protected readonly IProductoRepository _productoRepository;
         public ProductoController(IProductoRepository productoRepository)
         {
-            _categoriaRepository = productoRepository;
+            _productoRepository = productoRepository;
 
         }
 
@@ -26,7 +27,7 @@ namespace AlitasKentaki.API.Controllers
         [Route("obtenerproductosporcategoria")]
         public ActionResult ObtenerProductosPorCategoria(int idCategoria)
         {
-            var ret = _categoriaRepository.ObtenerProductosPorCategoria(idCategoria);
+            var ret = _productoRepository.ObtenerProductosPorCategoria(idCategoria);
 
             if (ret == null)
                 return StatusCode(401);
@@ -40,12 +41,42 @@ namespace AlitasKentaki.API.Controllers
         [Route("obtenerproductoporid")]
         public ActionResult ObtenerProductoPorId(int idProducto)
         {
-            var ret = _categoriaRepository.ObtenerProductoPorId(idProducto);
+            var ret = _productoRepository.ObtenerProductoPorId(idProducto);
 
             if (ret == null)
                 return StatusCode(401);
 
             return Json(ret);
         }
+
+
+
+        [HttpPost]
+        [Route("insert")]
+        public ActionResult Crear(EntityProducto data)
+        {
+            var ret = _productoRepository.Crear(data);
+            return Json(ret);
+        }
+
+        [HttpPut]
+        [Route("update")]
+        public ActionResult Actualizar(int codigo, EntityProducto data)
+        {
+
+            var ret = _productoRepository.Actualizar(data);
+            return Json(ret);
+        }
+
+        [HttpDelete]
+        [Route("delete")]
+        public ActionResult Desactivar(int codigo, int usuariomodifica)
+        {
+            var ret = _productoRepository.Desactivar(codigo, usuariomodifica);
+            return Json(ret);
+        }
+
+
+
     }
 }
