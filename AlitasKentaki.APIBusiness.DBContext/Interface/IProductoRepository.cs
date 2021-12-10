@@ -9,5 +9,11 @@ namespace DBContext
     {
         public BaseResponse ObtenerProductosPorCategoria(int idCategoria);
         public BaseResponse ObtenerProductoPorId(int idProducto);
+
+        // CAMBIOS MH
+        public BaseResponse Crear(EntityProducto producto);
+        public BaseResponse Actualizar(EntityProducto producto);
+        public BaseResponse Desactivar(int codigo, int usuarioModifica);
+
     }
 }
