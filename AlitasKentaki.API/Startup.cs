@@ -114,6 +114,9 @@ namespace AlitasKentaki.API
             services.AddTransient<IUserRepository, UserRepository>();
             //services.AddTransient<IProjectRepository, ProjectRepository>();
             //services.AddTransient<IApartmentRepository, ApartmentRepository>();
+            services.AddTransient<IAdminPedidoRepository, AdminPedidoRepository>();
+            services.AddTransient<IUsuarioRepository, UsuarioRepository>();
+            services.AddTransient<IAdminDetallePedidoRepository, AdminDetallePedidoRepository>();
             // ----------------------------------------------------------------
             services.AddTransient<HttpClientAuthorizationDelegatingHandler>();
             services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
