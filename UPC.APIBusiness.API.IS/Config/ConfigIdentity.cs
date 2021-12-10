@@ -55,7 +55,8 @@ namespace API.IS
                         ClientId = "71BB7236-C97F-46F8-A0CB-395AA0FCADDF",
                         ClientSecrets = { new Secret("AF5D9F51-276D-4D24-9E82-31A90A88C4FF".ToSha256()) },
                         AllowedGrantTypes = { GrantType.ClientCredentials },
-                        AllowedScopes =  { "email", IdentityServerConstants.StandardScopes.Email }
+                        AllowedScopes =  { "email", IdentityServerConstants.StandardScopes.Email },
+                        AccessTokenLifetime = 72000
                     }
                     );
             return lstReturn;

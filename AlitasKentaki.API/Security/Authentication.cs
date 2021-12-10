@@ -29,7 +29,7 @@ namespace AlitasKentaki.API.Security
                      Policy = {
                         ValidateIssuerName = false,
                         ValidateEndpoints = false,
-                        RequireHttps = false   // Remover en Certificacion / Produccion
+                        RequireHttps = false   // Remover en Certificacion / Produccion,
                      }
                  }
                 );
@@ -48,7 +48,7 @@ namespace AlitasKentaki.API.Security
                     {
                         { "client_numero_documento", $"{numeroDocumento}"},
                         { "client_codigo_usuario", $"{codigoUsuario}" }
-                    }
+                    },
                 });
 
                 if (tokenResponse.IsError)
