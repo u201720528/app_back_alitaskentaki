@@ -237,5 +237,41 @@ namespace DBContext
             return returnEntity;
         }
 
+        public BaseResponse ObtenerProductos()
+        {
+            var returnEntity = new BaseResponse();
+            var entitiesProject = new List<EntityProducto>();
+            try
+            {
+                using (var db = GetSqlConnection())
+                {
+                    const string sql = @"usp_ObtenerProductos";
+                    entitiesProject = db.Query<EntityProducto>(sql, commandType: CommandType.StoredProcedure).ToList();
+                    if (entitiesProject.Count > 0)
+                    {
+                        returnEntity.issuccess = true;
+                        returnEntity.errorcode = "0000";
+                        returnEntity.errormessage = string.Empty;
+                        returnEntity.data = entitiesProject;
+                    }
+                    else
+                    {
+                        returnEntity.issuccess = false;
+                        returnEntity.errorcode = "0000";
+                        returnEntity.errormessage = string.Empty;
+                        returnEntity.data = null;
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                returnEntity.issuccess = false;
+                returnEntity.errorcode = "0001";
+                returnEntity.errormessage = ex.Message;
+                returnEntity.data = null;
+            }
+            return returnEntity;
+        }
     }
 }
