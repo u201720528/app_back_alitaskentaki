@@ -77,7 +77,7 @@ namespace AlitasKentaki.API
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     Description = @"Esta api usa Authorization  basada en JWT.-  
-                      Ingrese 'Bearer' [space] y luego el token de autenticación.
+                      Ingrese 'Bearer' [space] y luego el token de autenticaciï¿½n.
                       Ejemplo: 'Bearer HJNX4354X...'",
                     Name = "Authorization",
                     In = ParameterLocation.Header,
@@ -106,7 +106,7 @@ namespace AlitasKentaki.API
             });
 
 
-            //TODO: Registrar las interfaces para Inyección de Dependencias
+            //TODO: Registrar las interfaces para Inyecciï¿½n de Dependencias
 
             services.AddTransient<ICategoriaRepository, CategoriaRepository>();
             services.AddTransient<IProductoRepository, ProductoRepository>();
@@ -117,9 +117,11 @@ namespace AlitasKentaki.API
             services.AddTransient<IAdminPedidoRepository, AdminPedidoRepository>();
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();
             services.AddTransient<IAdminDetallePedidoRepository, AdminDetallePedidoRepository>();
+            services.AddTransient<ILocalRepository, LocalRepository>();
             // ----------------------------------------------------------------
             services.AddTransient<HttpClientAuthorizationDelegatingHandler>();
             services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
+            
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
