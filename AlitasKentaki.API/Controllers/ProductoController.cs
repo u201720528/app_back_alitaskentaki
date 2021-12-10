@@ -33,5 +33,19 @@ namespace AlitasKentaki.API.Controllers
 
             return Json(ret);
         }
+
+        [Produces("application/json")]
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("obtenerproductoporid")]
+        public ActionResult ObtenerProductoPorId(int idProducto)
+        {
+            var ret = _categoriaRepository.ObtenerProductoPorId(idProducto);
+
+            if (ret == null)
+                return StatusCode(401);
+
+            return Json(ret);
+        }
     }
 }
